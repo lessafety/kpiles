@@ -336,52 +336,52 @@
       document.getElementById('loginForm').reset();
     });
     
-    // Search Dropdown Handler
-    const poinInput = document.getElementById('poinPenilaian');
-    const dropdownList = document.getElementById('dropdownList');
-    const dropdownItems = document.querySelectorAll('.dropdown-item');
-    
-    poinInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();
-      let hasVisibleItems = false;
-      
-      dropdownItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-          item.style.display = 'block';
-          hasVisibleItems = true;
-        } else {
-          item.style.display = 'none';
-        }
-      });
-      
-      dropdownList.style.display = hasVisibleItems && searchTerm ? 'block' : 'none';
-    });
-    
-    poinInput.addEventListener('focus', function() {
-      if (this.value) {
-        const searchTerm = this.value.toLowerCase();
-        let hasVisibleItems = false;
-        
-        dropdownItems.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          if (text.includes(searchTerm)) {
-            item.style.display = 'block';
-            hasVisibleItems = true;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-        
-        dropdownList.style.display = hasVisibleItems ? 'block' : 'none';
-      }
-    });
-    
-dropdownItems.forEach(item => {
-  item.addEventListener('click', function() {
-    poinInput.value = this.textContent.trim(); // ✅ Mengambil teks tampilan
-    dropdownList.style.display = 'none';
+  // Search Dropdown Handler (versi otomatis)
+const poinInput = document.getElementById('poinPenilaian');
+const dropdownList = document.getElementById('dropdownList');
+
+// Daftar item dropdown 
+const poinList = [
+  "Servis SI210", "Servis IRISNV", "Servis MMR", "Servis ACRA", "Servis NIDEC",
+  "Setting Brake YTW", "Setting Brake TY", "Setting Brake TKL", "Setting Brake TKM",
+  "Setting Brake Helical", "Setting Brake ZTW",
+  "Setting Rail Sangkar", "Setting Rail CWT", "Setting Rail Pintu Luar"
+];
+
+// Fungsi render dropdown
+function renderDropdown(items) {
+  dropdownList.innerHTML = '';
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item px-4 py-3 cursor-pointer hover:bg-opacity-80';
+    div.style.background = 'rgba(30, 30, 50, 0.6)';
+    div.style.color = '#e0e0ff';
+    div.textContent = item;
+    div.onclick = () => {
+      poinInput.value = item;
+      dropdownList.style.display = 'none';
+    };
+    dropdownList.appendChild(div);
   });
+}
+
+// Saat input diklik atau difokuskan, tampilkan semua item
+poinInput.addEventListener('focus', () => {
+  renderDropdown(poinList);
+  dropdownList.style.display = 'block';
+});
+
+// Saat user mengetik, filter hasil
+poinInput.addEventListener('input', () => {
+  const keyword = poinInput.value.toLowerCase();
+  const filtered = poinList.filter(p => p.toLowerCase().includes(keyword));
+  renderDropdown(filtered);
+  dropdownList.style.display = filtered.length ? 'block' : 'none';
+});
+
+// Klik di luar -> sembunyikan
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.relative')) dropdownList.style.display = 'none';
 });
 
 
