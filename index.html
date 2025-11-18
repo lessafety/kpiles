@@ -74,7 +74,24 @@
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       border-color: #6366f1;
     }
-  
+  .dropdown-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+
+  background: rgba(20,20,40,0.95);
+  border: 1px solid rgba(100,100,255,0.3);
+  border-radius: 8px;
+
+  max-height: 200px;     /* BATAS 5–6 item */
+  overflow-y: auto;      /* INI WAJIB */
+  display: none;
+
+  z-index: 9999 !important; /* pastikan muncul di depan */
+}
+
      .checkbox-custom:checked::after {
       content: '✓';
       position: absolute;
@@ -168,8 +185,7 @@
   </div>
 </div>
         <!-- Poin Penilaian -->
-<div class="relative"><label class="block text-sm font-medium mb-2" style="color: #c0c0e0;"> <span class="icon">📋</span>Poin Penilaian </label> <input type="text" id="poinPenilaian" class="input-field w-full px-4 py-3 rounded-lg" placeholder="Ketik untuk mencari poin penilaian..." autocomplete="off" required> <div id="dropdownList" class="absolute top-full left-0 right-0 mt-1 rounded-lg overflow-hidden z-10" style="background: rgba(20, 20, 40, 0.95); border: 1px solid rgba(100, 100, 255, 0.3); display: none;"> 
-       <div class="dropdown-item px-4 py-3 cursor-pointer hover:bg-opacity-80" style="background: rgba(30, 30, 50, 0.6); color: #e0e0ff;">
+<div id="dropdownListTeknisi" class="dropdown-container"></div>
 </div>
    <div class="dropdown-item px-4 py-3 cursor-pointer hover:bg-opacity-80" style="background: rgba(30, 30, 50, 0.6); color: #e0e0ff;">
   Servis IRISNV
