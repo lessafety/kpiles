@@ -57,7 +57,24 @@
     .btn-primary:active {
       transform: translateY(0);
     }
-    
+    .dropdown-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+
+  background: rgba(20,20,40,0.95);
+  border: 1px solid rgba(100,100,255,0.3);
+  border-radius: 8px;
+
+  max-height: 200px;     /* BATAS 5–6 item */
+  overflow-y: auto;      /* INI WAJIB */
+  display: none;
+
+  z-index: 9999 !important; /* pastikan muncul di depan */
+}
+
     .checkbox-custom {
       appearance: none;
       width: 20px;
@@ -168,26 +185,7 @@
   </div>
 </div>
         <!-- Poin Penilaian -->
-     <div id="dropdownListTeknisi"
-     style="
-       position: absolute;
-       top: 100%;
-       left: 0;
-       right: 0;
-       margin-top: 4px;
-
-       background: rgba(20,20,40,0.95);
-       border: 1px solid rgba(100,100,255,0.3);
-       border-radius: 8px;
-
-       max-height: 200px;      /* BATAS TINGGI */
-       overflow-y: auto;       /* SCROLL */
-       display: none;
-
-       z-index: 9999;          /* AGAR DI DEPAN SEMUA */
-     ">
-</div>
-
+   <div id="dropdownListTeknisi" class="dropdown-container"></div>
 </div>
    <div class="dropdown-item px-4 py-3 cursor-pointer hover:bg-opacity-80" style="background: rgba(30, 30, 50, 0.6); color: #e0e0ff;">
   Servis IRISNV
